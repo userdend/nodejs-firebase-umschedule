@@ -1,5 +1,6 @@
 const express = require("express");
 const server = express();
+const port = process.env.PORT || 8080;
 
 const request = require("request");
 const cheerio = require("cheerio");
@@ -64,7 +65,9 @@ scheduleLink.forEach((item, index) => {
 });
 
 server.use(express.static("public"));
+server.use("/css", express.static(__dirname + "public/css"));
+server.use("js", express.static(__dirname + "public/js"));
 server.get("/", (request, response) => {
   response.sendFile("index.html");
 });
-server.listen(8080);
+server.listen(port);
