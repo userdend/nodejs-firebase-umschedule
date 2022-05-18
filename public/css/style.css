@@ -1,0 +1,10 @@
+body {
+  padding: 5%;
+}
+
+input {
+  text-align: center;
+  margin: auto;
+  margin-bottom: 1%;
+  width: 60%;
+}
