@@ -45,7 +45,7 @@ scheduleLink.forEach((item, index) => {
               subject: title,
               path: link,
               currentSchedule: new Date().getFullYear(),
-              subjectLink: "https://bpa.ums.edu.my/kuliah/",
+              subjectLink: "http://bpa.ums.edu.my/kuliah/",
             });
         }
         if (index == 1) {
@@ -56,7 +56,7 @@ scheduleLink.forEach((item, index) => {
               subject: title,
               path: link,
               currentSchedule: "always updated",
-              subjectLink: "https://bpa.ums.edu.my/prev_kuliah/",
+              subjectLink: "http://bpa.ums.edu.my/prev_kuliah/",
             });
         }
       });
