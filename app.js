@@ -1,4 +1,5 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const server = express();
 const port = process.env.PORT || 8080;
 
@@ -20,15 +21,9 @@ const app = firebase.initializeApp({
 const firebase_database = firebase.database();
 
 const scheduleLink = [
-  "https://bpa.ums.edu.my/kuliah/mindex.html",
-  "https://bpa.ums.edu.my/prev_kuliah/mindex.html",
+  "http://bpa.ums.edu.my/kuliah/mindex.html",
+  "http://bpa.ums.edu.my/prev_kuliah/mindex.html",
 ];
-
-const subject_semester1 = [];
-const path_semester1 = [];
-
-const subject_semester2 = [];
-const path_semester2 = [];
 
 scheduleLink.forEach((item, index) => {
   request(item, (error, response, html) => {
@@ -64,10 +59,17 @@ scheduleLink.forEach((item, index) => {
   });
 });
 
+//SET MIDDLEWARE.
+server.use(bodyParser.urlencoded({ extended: true }));
 server.use(express.static("public"));
 server.use("/css", express.static(__dirname + "public/css"));
-server.use("js", express.static(__dirname + "public/js"));
-server.get("/", (request, response) => {
-  response.sendFile("index.html");
+server.use("/js", express.static(__dirname + "public/js"));
+
+//ON REQUEST.
+server.use("/", (request, response) => {
+  response.render("index.html");
 });
-server.listen(port);
+
+server.listen(port, () => {
+  console.log("Server is running.");
+});
