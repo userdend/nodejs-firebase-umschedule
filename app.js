@@ -67,6 +67,7 @@ server.use("/", (request, response) => {
   response.render("index.html");
 });
 
+//LISTEN TO PORT.
 server.listen(port, () => {
   console.log("Server is running.");
 });
