@@ -2,11 +2,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const server = express();
 const port = process.env.PORT || 8080;
-
 const request = require("request");
 const cheerio = require("cheerio");
 const firebase = require("firebase");
-
 const app = firebase.initializeApp({
   apiKey: "AIzaSyD7WLkLLZWE-1bMQc5VsDgD4yPsLhdjRo4",
   authDomain: "umstimetable.firebaseapp.com",
@@ -17,14 +15,13 @@ const app = firebase.initializeApp({
   appId: "1:7182710153:web:b3de07ca4c555a6edd1d58",
   measurementId: "G-MPGRS908M4",
 });
-
 const firebase_database = firebase.database();
-
 const scheduleLink = [
   "http://bpa.ums.edu.my/kuliah/mindex.html",
   "http://bpa.ums.edu.my/prev_kuliah/mindex.html",
 ];
 
+//UPDATE DATA.
 scheduleLink.forEach((item, index) => {
   request(item, (error, response, html) => {
     if (!error && response.statusCode == 200) {
